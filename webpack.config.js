@@ -14,5 +14,29 @@ module.exports = {
     output:{
         path:__dirname+'/dist',
         filename:'[name].bundle.js'
+    },
+    plugins:[
+        new webpack.optimize.CommonsChunkPlugin({
+            name:'commons',
+            filename:'commons.js',
+            minChunks:2
+        })
+    ],
+    module:{
+        rules:[
+            {
+                test:/\.js$/,
+                use:[
+                    {
+                        loader:'babel-lodaer',
+                        options:{presets:['es2015']}
+                    }
+                ]
+            },
+            {
+                test:/\.css$/,
+                use:['style-loader',{ loader: "css-loader", options: { modules: true }}]
+            }
+        ]
     }
 }
