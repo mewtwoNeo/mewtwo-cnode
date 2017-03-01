@@ -1,14 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <list></list>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import List from './components/list/List.vue'
+  export default {
+    name: 'app',
+    components: {
+      List
+    }
+  }
 </script>
 
 <style>
@@ -18,6 +21,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
