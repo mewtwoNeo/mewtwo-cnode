@@ -2,7 +2,12 @@
   <div class="demo-infinite-container">
     <mu-list>
       <template v-for="item in list">
-        <mu-list-item :title="item"/>
+        <mu-list-item title="这个周末一起吃饭么?">
+          <mu-avatar :src="avatar1" slot="leftAvatar"/>
+          <span slot="describe">
+            <span style="color: rgba(0, 0, 0, .87)">Myron Liu -</span> 周末要来你这里出差，要不要一起吃个饭呀，实在编不下去了,哈哈哈哈哈哈
+          </span>
+        </mu-list-item>
         <mu-divider/>
       </template>
     </mu-list>
@@ -11,6 +16,7 @@
 </template>
 
 <script>
+
   export default {
     data () {
       const list = []

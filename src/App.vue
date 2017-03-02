@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <list></list>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import List from './components/list/List.vue'
   export default {
-    name: 'app',
-    components: {
-      List
-    }
+    name: 'app'
   }
 </script>
 
