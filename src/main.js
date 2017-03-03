@@ -3,7 +3,6 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/router'
-import axios from 'axios'
 import store from './store/store'
 
 import MuseUI from 'muse-ui'
@@ -17,7 +16,6 @@ Vue.use(MuseUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  axios,
   router,
   store,
   ...App

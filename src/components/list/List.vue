@@ -16,6 +16,8 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
+  import * as types from '../../store/types'
 
   export default {
     data () {
@@ -31,9 +33,13 @@
       }
     },
     mounted () {
+      this.getTopics([1, 'ask', 20])
       this.scroller = this.$el
     },
     methods: {
+      ...mapActions({
+        getTopics: [types.GET_TOPICS]
+      }),
       loadMore () {
         this.loading = true
         setTimeout(() => {
