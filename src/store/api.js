@@ -22,11 +22,11 @@ export function get (url) {
 }
 
 // 获取主题首页
-export function getTopics (page = 1, tab = 'ask', limit = 10) {
-  return get(`${API_TYPE.topic.get_topics}?page=${page}&tab=${tab}&limit=${limit}`)
+export function getTopics (page = 1, tab = 'ask', limit = 10, mdrender = false) {
+  return get(`${API_TYPE.topic.get_topics}?page=${page}&tab=${tab}&limit=${limit}&mdrender=${mdrender}`)
 }
 
 // 获取主题详情
-export function getTopicId (id) {
-  return get(`${API_TYPE.topic.get_topic_id}/${id}`)
+export function getTopicId (id, mdrender = true) {
+  return get(`${API_TYPE.topic.get_topic_id}/${id}?mdrender=${mdrender}`)
 }

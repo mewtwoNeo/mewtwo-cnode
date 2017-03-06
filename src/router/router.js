@@ -5,11 +5,18 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import list from '../components/list/List.vue'
+import article from '../components/article/article.vue'
 
 const routes = [
-  {path: '/list',
-    component: list
-  }]
+  { path: '/',
+    component: list,
+    name: 'list'
+  },
+  { path: '/article/:topicId',
+    component: article,
+    name: 'article'
+  }
+]
 
 // 实例话vue-router
 export default new VueRouter({

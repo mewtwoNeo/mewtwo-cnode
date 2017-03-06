@@ -5,16 +5,17 @@ import * as types from '../types'
 import {getTopics, getTopicId} from '../api'
 
 const state = {
-  topics: []
+  list: [],
+  article: {}
 }
 
 const actions = {
   [types.GET_TOPICS] (context, payload) {
-    getTopics(...payload).then(data => { context.commit(types.GET_TOPICS, data) })
+    getTopics(...payload).then(data => { context.commit(types.GET_TOPICS, data.data) })
   },
 
   [types.GET_TOPIC_ID] (context, id) {
-    getTopicId(id).then(data => { console.log(data) })
+    getTopicId(id).then(data => { context.commit(types.GET_TOPIC_ID, data.data) })
   }
 
 }
@@ -22,7 +23,12 @@ const actions = {
 const mutations = {
   [types.GET_TOPICS] (state, list) {
     console.log(list)
-    state.topics.push(list)
+    // 合并数组
+    state.list.push.apply(state.list, list)
+  },
+  [types.GET_TOPIC_ID] (state, article) {
+    console.log(article)
+    state.article = article
   }
 }
 

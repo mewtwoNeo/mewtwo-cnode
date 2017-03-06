@@ -4,7 +4,6 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/router'
 import store from './store/store'
-
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 
@@ -15,8 +14,7 @@ Vue.use(MuseUI)
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
   router,
   store,
-  ...App
+  render: h => h(App)
 }).$mount('#app')
