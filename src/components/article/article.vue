@@ -1,19 +1,10 @@
 <template>
-  <div v-html="article" class="article"></div>
+  <div v-html="article" class="markdown-body article"></div>
 </template>
 
 <script>
   import {mapState, mapActions} from 'vuex'
   import * as types from '../../store/types'
-  import marked from 'marked'
-  import hljs from 'highlight.js'
-  import 'highlight.js/styles/default.css'
-
-  marked.setOptions({
-    highlight: function (code) {
-      return hljs.highlightAuto(code).value
-    }
-  })
 
   export default {
     data () {
@@ -26,7 +17,9 @@
     },
     computed: {
       ...mapState({
-        article: state => marked(state.cnode.article.content)
+        article: state => {
+          return state.cnode.article.content
+        }
       })
     },
     methods: {
@@ -39,6 +32,6 @@
 
 <style lang="css">
   .article {
-    margin:20px;
+    margin:10px;
   }
 </style>

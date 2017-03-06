@@ -6,6 +6,7 @@ import router from './router/router'
 import store from './store/store'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+import './assets/style/css/github-markdown.css'
 
 Vue.config.productionTip = false
 
