@@ -1,16 +1,16 @@
 <template>
-  <div class="demo-infinite-container">
-    <mu-list>
-        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list">
-          <mu-list-item :title="topic.title" titleClass="textLeft" >
-            <mu-avatar :src="topic.author.avatar_url" slot="leftAvatar"/>
-            <span slot="right">{{ topic.last_reply_at | MMDD('-') }}</span>
-          </mu-list-item>
-          <mu-divider/>
-        </router-link>
-    </mu-list>
-    <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
-  </div>
+    <div class="topics-infinite-container">
+      <mu-list>
+          <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list">
+            <mu-list-item :title="topic.title" titleClass="textLeft" >
+              <mu-avatar :src="topic.author.avatar_url" slot="leftAvatar"/>
+              <span slot="right">{{ topic.last_reply_at | MMDD('-') }}</span>
+            </mu-list-item>
+            <mu-divider/>
+          </router-link>
+      </mu-list>
+      <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
+    </div>
 </template>
 
 <script>
@@ -36,7 +36,7 @@
       MMDD: utils.MMDD
     },
     mounted () {
-      this.getTopics([this.page, 'ask', this.limit])
+      this.getTopics([this.page, 'all', this.limit])
       this.scroller = this.$el
     },
     computed: mapState({
@@ -51,7 +51,7 @@
         this.loading = true
         setTimeout(() => {
           // 加载更多
-          this.getTopics([this.page += 1, 'ask', this.limit]).then(() => {
+          this.getTopics([this.page += 1, 'all', this.limit]).then(() => {
             this.num += this.limit
             // 隐藏加载更多
             this.loading = false
@@ -63,10 +63,7 @@
 </script>
 
 <style lang="css">
-  .textLeft {
-    text-align: left;
-  }
-  .demo-infinite-container{
+  .topics-infinite-container{
     position: absolute;
     width: 100%;
     height: 100%;

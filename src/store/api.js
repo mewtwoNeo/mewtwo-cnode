@@ -22,7 +22,7 @@ export function get (url) {
 }
 
 // 获取主题首页
-export function getTopics (page = 1, tab = 'ask', limit = 10, mdrender = true) {
+export function getTopics (page = 1, tab = 'all', limit = 10, mdrender = true) {
   return get(`${API_TYPE.topic.get_topics}?page=${page}&tab=${tab}&limit=${limit}&mdrender=${mdrender}`)
 }
 

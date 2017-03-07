@@ -4,8 +4,8 @@ import VueRouter from 'vue-router'
 // 使用vue-router
 Vue.use(VueRouter)
 
-import list from '../components/list/List.vue'
-import article from '../components/article/article.vue'
+import list from '../views/list/List.vue'
+import article from '../views/article/article.vue'
 
 const routes = [
   { path: '/',
