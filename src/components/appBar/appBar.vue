@@ -1,13 +1,13 @@
 <template>
   <div>
-    <mu-appbar title="首页" class="appBar" >
+    <mu-appbar title="首页" class="appBar"  >
       <mu-icon-button icon='menu' slot="left" @click="toggle(true)"/>
       <mu-icon-button icon='add' slot="right"/>
     </mu-appbar>
     <mu-drawer :open="open" :docked="docked" @close="toggle()" class="drawer">
       <mu-list @itemClick="docked ? '' : toggle()">
         <mu-list-item title="mewtwo">
-          <mu-avatar size="24" icon="assignment" backgroundColor="blue" slot="leftAvatar" />
+          <mu-avatar size=Number('24') icon="assignment" backgroundColor="blue" slot="leftAvatar" />
         </mu-list-item>
         <mu-list-item title="登陆">
           <mu-icon slot="left" value="person_outline"/>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+
   export default {
     data () {
       return {

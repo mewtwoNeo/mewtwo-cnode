@@ -1,13 +1,35 @@
 <template>
     <div class="topics-infinite-container">
       <mu-list>
-          <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list">
-            <mu-list-item :title="topic.title" titleClass="textLeft" >
-              <mu-avatar :src="topic.author.avatar_url" slot="leftAvatar"/>
-              <span slot="right">{{ topic.last_reply_at | MMDD('-') }}</span>
-            </mu-list-item>
-            <mu-divider/>
-          </router-link>
+        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list">
+          <mu-row gutter class="topics-header">
+            <mu-col width="20">
+              <mu-badge :content="topic.tab | getTabInfo(topic.good,topic.top)"  v-if='topic.top||topic.good'  secondary/>
+              <mu-badge :content="topic.tab | getTabInfo(topic.good,topic.top)"  v-else />
+            </mu-col>
+            <mu-col width="80" class="topics-title">{{topic.title}}</mu-col>
+          </mu-row>
+          <mu-row gutter>
+            <mu-col width="20"><mu-avatar :src="topic.author.avatar_url" /></mu-col>
+            <mu-col width="40" class="textLeft">
+              <mu-col>
+                {{topic.author.loginname}}
+              </mu-col>
+              <mu-col>
+                {{topic.create_at | timeago('zh_CN')}}
+              </mu-col>
+            </mu-col>
+            <mu-col width="40" class="textRight topics-tips-right">
+              <mu-col >
+                <mu-badge :content="topic.reply_count | toString"   primary/>/<mu-badge :content="topic.visit_count | toString"   />
+              </mu-col>
+              <mu-col >
+                <span>{{ topic.last_reply_at | timeago('zh_CN') }}</span>
+              </mu-col>
+            </mu-col>
+          </mu-row>
+          <mu-divider/>
+        </router-link>
       </mu-list>
       <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
     </div>
@@ -16,7 +38,8 @@
 <script>
   import {mapState, mapActions} from 'vuex'
   import * as types from '../../store/types'
-  import utils from './../../filters/utils'
+  import filters from './../../filters/filters'
+  import timeago from 'timeago.js'
 
   export default {
     data () {
@@ -33,15 +56,20 @@
       }
     },
     filters: {
-      MMDD: utils.MMDD
+      MMDD: filters.MMDD,
+      getTabInfo: filters.getTabInfo,
+      toString: String,
+      timeago: timeago().format
     },
     mounted () {
       this.getTopics([this.page, 'all', this.limit])
       this.scroller = this.$el
     },
-    computed: mapState({
-      list: state => state.cnode.list
-    }),
+    computed: {
+      ...mapState({
+        list: state => state.cnode.list
+      })
+    },
     methods: {
       ...mapActions({
         getTopics: [types.GET_TOPICS]
@@ -63,12 +91,29 @@
 </script>
 
 <style lang="css">
-  .topics-infinite-container{
+  .topics-infinite-container {
     position: absolute;
     width: 100%;
     height: 100%;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     border: 1px solid #d9d9d9;
+    line-height: 24px;
   }
+  .topics-header {
+    padding: 5px 0;
+    font-weight: 900;
+  }
+  .topics-title {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    text-align: left;
+  }
+  .topics-tips-right {
+    padding-right: 20px;
+  }
+
+
 </style>

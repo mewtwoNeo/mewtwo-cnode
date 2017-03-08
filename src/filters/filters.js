@@ -1,10 +1,23 @@
 /**
  * Created by dengchongjing on 2017/3/6.
  */
+
 /**
  * @description 封装util类
  */
 class Utils {
+
+  /**
+   * @description 静态方法，给个位数字加0
+   * @param {number} num 需要加0的数字
+   */
+  static getzf (num) { // 给个位数字加0
+    if (parseInt(num) < 10) {
+      num = '0' + num
+    }
+    return num
+  }
+
   /**
    * @description 千分位方法，返回字符串
    * @param {Number} num 需要千分位的数字
@@ -19,19 +32,13 @@ class Utils {
    * @param {string} format 风格日期的字符，如：'-' '.'
    */
   YYYYMMDDHHMM (str, format) {
-    function getzf (num) { // 给个位数字加0
-      if (parseInt(num) < 10) {
-        num = '0' + num
-      }
-      return num
-    }
     const oDate = new Date(str)
     const oYear = oDate.getFullYear()
     const oMonth = oDate.getMonth() + 1
     const oDay = oDate.getDate()
     const oHour = oDate.getHours()
     const oMinute = oDate.getMinutes()
-    return oYear + format + getzf(oMonth) + format + getzf(oDay) + ' ' + getzf(oHour) + ':' + getzf(oMinute)
+    return oYear + format + Utils.getzf(oMonth) + format + Utils.getzf(oDay) + ' ' + Utils.getzf(oHour) + ':' + Utils.getzf(oMinute)
   }
 
   /**
@@ -40,21 +47,11 @@ class Utils {
    * @param {string} format 风格日期的字符，如：'-' '.'
    */
   YYYYMMDD (str, format) {
-    /**
-     * @description 给个位数字加0
-     * @param {number} num 需要加0的数字
-     */
-    function getzf (num) { // 给个位数字加0
-      if (parseInt(num) < 10) {
-        num = '0' + num
-      }
-      return num
-    }
     const oDate = new Date(str)
     const oYear = oDate.getFullYear()
     const oMonth = oDate.getMonth() + 1
     const oDay = oDate.getDate()
-    return oYear + format + getzf(oMonth) + format + getzf(oDay)
+    return oYear + format + Utils.getzf(oMonth) + format + Utils.getzf(oDay)
   }
 
   /**
@@ -63,20 +60,10 @@ class Utils {
    * @param {string} format 风格日期的字符，如：'-' '.'
    */
   MMDD (str, format) {
-    /**
-     * @description 给个位数字加0
-     * @param {number} num 需要加0的数字
-     */
-    function getzf (num) { // 给个位数字加0
-      if (parseInt(num) < 10) {
-        num = '0' + num
-      }
-      return num
-    }
     const oDate = new Date(str)
     const oMonth = oDate.getMonth() + 1
     const oDay = oDate.getDate()
-    return getzf(oMonth) + format + getzf(oDay)
+    return Utils.getzf(oMonth) + format + Utils.getzf(oDay)
   }
   /**
    * @description 保留两位小数（将浮点数四舍五入，取小数点后2位）
@@ -90,9 +77,45 @@ class Utils {
     f = Math.round(x * 100) / 100
     return f
   }
+
+  /**
+   * @description 转换主题标签字段
+   */
+  getTabInfo (tab, good, top, isClass) {
+    let str = ''
+    let className = ''
+    if (top) {
+      str = '置顶'
+      className = 'top'
+    } else if (good) {
+      str = '精华'
+      className = 'good'
+    } else {
+      switch (tab) {
+        case 'share':
+          str = '分享'
+          className = 'share'
+          break
+        case 'ask':
+          str = '问答'
+          className = 'ask'
+          break
+        case 'job':
+          str = '招聘'
+          className = 'job'
+          break
+        default:
+          str = '暂无'
+          className = 'default'
+          break
+      }
+    }
+    return isClass ? className : str
+  }
 }
 
 /**
  * @description 暴露出Util类的实例
  */
 export default new Utils()
+

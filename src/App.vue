@@ -21,11 +21,14 @@
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-  .main{padding: 56px 0;}
+
+#app a,#app a:visited {
+  text-decoration: none;
+  color: #000
+}
+.main{padding: 56px 0;}
 </style>

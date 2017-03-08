@@ -28,7 +28,7 @@ b,em,h1,h2,h3,h4,h5,h6,i,th,td{
 }
 
 body,button,input,select,textarea,p{
-  font: 400 14px/1.5 helvetica,verdana,san-serif;
+  font: 400 14px/1.5 Helvetica-Neue,Helvetica,Arial,sans-serif;
   outline: 0;
   color: #000;
   background: none;
@@ -44,7 +44,7 @@ color: #B4B4B4;
 
 a,a:visited {
   text-decoration: none;
-  color: #787878
+  color: #000
 }
 
 .img img,video {
@@ -106,3 +106,5 @@ body {
 .f30{font-size: .3rem}
 .f26{font-size: .26rem}
 .f24{font-size: .24rem}
+
+.w50{width:50px}
