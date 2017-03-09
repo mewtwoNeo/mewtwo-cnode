@@ -25,7 +25,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
 #app a,#app a:visited {
   text-decoration: none;
   color: #000
