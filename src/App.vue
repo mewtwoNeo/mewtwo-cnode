@@ -20,14 +20,18 @@
 </script>
 
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-#app a,#app a:visited {
-  text-decoration: none;
-  color: #000
-}
-.main{padding: 56px 0;}
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
+
+  #app a, #app a:visited {
+    text-decoration: none;
+    color: #000
+  }
+
+  .main {
+    padding: 56px 0;
+  }
 </style>
