@@ -1,7 +1,7 @@
 <template>
     <div class="topics-infinite-container">
       <mu-list>
-        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list">
+        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list" :key='topic.id' >
           <mu-row gutter class="topics-header">
             <mu-col width="20">
               <mu-badge :content="topic.tab | getTabInfo(topic.good,topic.top)"  v-if='topic.top||topic.good'  secondary/>

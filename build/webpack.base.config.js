@@ -1,22 +1,27 @@
+/**
+ * Created by dengchongjing on 2017/3/30.
+ */
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
+var isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
   entry: {
     app: './src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
+    // 静态
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+      : '/'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -39,7 +44,12 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: {
+          loaders: utils.cssLoaders({
+            sourceMap: isProduction ? true : false,
+            extract: isProduction
+          })
+        }
       },
       {
         test: /\.js$/,
