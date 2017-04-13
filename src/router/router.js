@@ -1,24 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+VueRouter.prototype.goBack = function () {
+  this.isBack = true
+  window.history.go(-1)
+}
+
 // 使用vue-router
 Vue.use(VueRouter)
 
+import pageTransition from '../components/pageTransition/pageTransition.vue'
 import list from '../views/list/List.vue'
 import article from '../views/article/article.vue'
 
 const routes = [
-  { path: '/',
-    component: list,
-    name: 'list'
-  },
-  { path: '/article/:topicId',
-    component: article,
-    name: 'article'
+  {
+    path: '/',
+    component: pageTransition,
+    name: 'pageTransition',
+    children: [
+      {
+        path: '',
+        component: list,
+        name: 'list'
+      },
+      {
+        path: '/article/:topicId',
+        component: article,
+        name: 'article'
+      }
+    ]
   }
 ]
 
-// 实例话vue-router
+// 实例化vue-router
 export default new VueRouter({
   routes
 })

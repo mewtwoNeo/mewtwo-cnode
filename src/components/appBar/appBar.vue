@@ -7,7 +7,7 @@
     <mu-drawer :open="open" :docked="docked" @close="toggle()" class="drawer">
       <mu-list @itemClick="docked ? '' : toggle()">
         <mu-list-item title="mewtwo">
-          <mu-avatar size=Number('24') icon="assignment" backgroundColor="blue" slot="leftAvatar" />
+          <mu-avatar :size="30" icon="assignment" backgroundColor="blue" slot="leftAvatar" />
         </mu-list-item>
         <mu-list-item title="登陆">
           <mu-icon slot="left" value="person_outline"/>
@@ -68,10 +68,9 @@
 </script>
 
 <style lang="css">
-.appBar {
-  position: fixed;
-  text-align: center;
-}
+  .appBar {
+    text-align: center;
+  }
   .drawer{
     text-align: left;
   }

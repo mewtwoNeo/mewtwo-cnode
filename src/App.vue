@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <appBar></appBar>
     <router-view class="main"></router-view>
-    <bottomNavigation></bottomNavigation>
   </div>
 </template>
 
@@ -20,6 +18,12 @@
 </script>
 
 <style>
+  .main {
+    position: absolute;
+    height:100%;
+    width: 100%;
+    overflow: hidden;
+  }
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,7 +35,4 @@
     color: #000
   }
 
-  .main {
-    padding: 56px 0;
-  }
 </style>

@@ -32,6 +32,6 @@
 
 <style lang="css">
   .article {
-    margin:0 10px;
+    padding:0 10px;
   }
 </style>

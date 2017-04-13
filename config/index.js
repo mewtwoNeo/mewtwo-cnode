@@ -26,20 +26,15 @@ module.exports = {
     // bundleAnalyzerReport: process.env.npm_config_report
   },
   dev: {
-    // env: require('./dev.env'),
-    port: 8080,
-    // 是否在浏览器打开
-    // autoOpenBrowser: true,
-    // 编译输出的二级目录
-    // assetsSubDirectory: 'static',
-    // 编译发布上线路径的根目录，可配置为资源服务器域名或 CDN 域名
-    // assetsPublicPath: '/',
-    proxyTable: {},
-    // CSS Sourcemaps off by default because relative paths are "buggy"
-    // with this option, according to the CSS-Loader README
-    // (https://github.com/webpack/css-loader#sourcemaps)
-    // In our experience, they generally work as expected,
-    // just be aware of this issue when enabling this option.
-    // cssSourceMap: true
+    port: 8081,
+    proxyTable: {
+      '/api': {
+        target: 'http://api.douban.com/v2',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/proxy': ''
+        }
+      }
+    }
   }
 }

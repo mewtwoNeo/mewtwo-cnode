@@ -5,11 +5,15 @@ import App from './App'
 import router from './router/router'
 import store from './store/store'
 import MuseUI from 'muse-ui'
+import { sync } from 'vuex-router-sync'
 import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-carbon.css'
 import './assets/style/css/github-markdown.css'
 
 Vue.config.productionTip = false
+
+// 同步路由
+sync(store, router)
 
 // 使用MuseUI
 Vue.use(MuseUI)

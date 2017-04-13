@@ -1,5 +1,6 @@
 <template>
     <div class="topics-infinite-container">
+      <appBar></appBar>
       <mu-list>
         <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list" :key='topic.id' >
           <mu-row gutter class="topics-header">
@@ -40,6 +41,7 @@
   import * as types from '../../store/types'
   import filters from './../../filters/filters'
   import timeago from 'timeago.js'
+  import appBar from '../../components/appBar/appBar.vue'
 
   export default {
     data () {
@@ -64,6 +66,9 @@
     mounted () {
       this.getTopics([this.page, 'all', this.limit])
       this.scroller = this.$el
+    },
+    components: {
+      appBar
     },
     computed: {
       ...mapState({
@@ -92,12 +97,6 @@
 
 <style lang="css">
   .topics-infinite-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    border: 1px solid #d9d9d9;
     line-height: 24px;
   }
   .topics-header {
@@ -114,6 +113,5 @@
   .topics-tips-right {
     padding-right: 20px;
   }
-
 
 </style>

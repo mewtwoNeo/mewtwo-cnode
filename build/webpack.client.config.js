@@ -16,6 +16,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // 打包共有的css文件
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+// 清除目录插件
+var rm = require('rimraf')
 var path = require('path')
 var utils = require('./utils')
 
@@ -58,6 +60,8 @@ var devwebackConfig = merge(baseWebpackConfig, {
   ]
 })
 
+
+
 // 生产环境配置
 var prodwebackConfig = merge(baseWebpackConfig, {
   module: {
@@ -75,7 +79,8 @@ var prodwebackConfig = merge(baseWebpackConfig, {
     // 生产文件
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     // 按需加载文件
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js'),
+    publicPath: config.build.assetsPublicPath
   },
   plugins : [
     // 设置页面中全局变量
@@ -124,13 +129,11 @@ var prodwebackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
-        // any required modules inside node_modules are extracted to vendor
+        // npm资源和src/lib下的文件打包为公共文件
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
+          ((module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0) || (module.resource.indexOf(path.join(__dirname, '../src/lib')) === 0))
         )
       }
     }),
@@ -142,8 +145,7 @@ var prodwebackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: './config/fis-config.js',
-        to: './',
-        ignore: ['.*']
+        to: './'
       }
     ])
   ]
@@ -152,7 +154,12 @@ var prodwebackConfig = merge(baseWebpackConfig, {
 
   var webpackConfig
 
-  if(env === 'production'){ // 如果是生产环境
+  if(env != 'development'){ // 如果是生产环境
+
+    // 清除产出目录
+    rm(config.build.assetsRoot, err => {
+      if (err) throw err
+    })
 
     webpackConfig = prodwebackConfig
 

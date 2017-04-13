@@ -6,6 +6,9 @@ import axios from 'axios'
 // 域名
 const HOST = 'https://cnodejs.org/api/v1'
 
+// 如果需要代理，加上这层路径
+// const proxy = '/proxy'
+
 export const API_TYPE = {
   topic: {
     // 主题首页

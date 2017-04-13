@@ -19,9 +19,7 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].js',
     // 静态
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : '/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -46,10 +44,19 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: utils.cssLoaders({
-            sourceMap: isProduction ? true : false,
+            sourceMap: true,
             extract: isProduction
-          })
+          }),
+          postcss: [
+            require('autoprefixer')({
+              browsers: ['Android > 1', 'ChromeAndroid > 1', 'FirefoxAndroid > 1', 'Samsung > 1', 'and_uc > 1', 'iOS > 1']
+            })
+          ]
         }
+      },
+      {
+        test: /\.scss$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.js$/,
