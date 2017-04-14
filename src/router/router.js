@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-VueRouter.prototype.goBack = function () {
-  this.isBack = true
-  window.history.go(-1)
-}
-
 // 使用vue-router
 Vue.use(VueRouter)
 
@@ -35,5 +30,7 @@ const routes = [
 
 // 实例化vue-router
 export default new VueRouter({
+  // 开启html History模式
+  // mode: 'history',
   routes
 })

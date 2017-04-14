@@ -64,7 +64,9 @@
       timeago: timeago().format
     },
     mounted () {
-      this.getTopics([this.page, 'all', this.limit])
+      if (this.list.length === 0) {
+        this.getTopics([this.page, 'all', this.limit])
+      }
       this.scroller = this.$el
     },
     components: {

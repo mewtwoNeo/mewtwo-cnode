@@ -22,7 +22,7 @@
     position: absolute;
     height:100%;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
   }
   #app {
     -webkit-font-smoothing: antialiased;
