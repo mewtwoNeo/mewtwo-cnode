@@ -6,7 +6,6 @@
  * @description 封装util类
  */
 class Utils {
-
   /**
    * @description 静态方法，给个位数字加0
    * @param {number} num 需要加0的数字
@@ -118,4 +117,3 @@ class Utils {
  * @description 暴露出Util类的实例
  */
 export default new Utils()
-

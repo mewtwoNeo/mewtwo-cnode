@@ -28,8 +28,8 @@ module.exports = {
   dev: {
     port: 8081,
     proxyTable: {
-      '/api': {
-        target: 'http://api.douban.com/v2',
+      '/proxy': {
+        target: '/',
         changeOrigin: true,
         pathRewrite: {
           '^/proxy': ''

@@ -29,8 +29,10 @@ const routes = [
 ]
 
 // 实例化vue-router
-export default new VueRouter({
+const router = new VueRouter({
   // 开启html History模式
   // mode: 'history',
   routes
 })
+
+export default router

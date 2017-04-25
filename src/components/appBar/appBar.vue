@@ -4,7 +4,11 @@
       <mu-icon-button icon='menu' slot="left" @click="toggle(true)"/>
       <mu-icon-button icon='add' slot="right"/>
     </mu-appbar>
-    <mu-drawer :open="open" :docked="docked" @close="toggle()" class="drawer">
+    <mu-drawer
+      :open="open"
+      :docked="docked"
+      @close="toggle()"
+      class="drawer">
       <mu-list @itemClick="docked ? '' : toggle()">
         <mu-list-item title="mewtwo">
           <mu-avatar :size="30" icon="assignment" backgroundColor="blue" slot="leftAvatar" />
