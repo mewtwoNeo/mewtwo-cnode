@@ -28,7 +28,7 @@ var env = process.env.NODE_ENV || 'development'
 var devwebackConfig = merge(baseWebpackConfig, {
   entry:{
     // 'dev-client': './build/dev-client'
-    'app': ['webpack-hot-middleware/client', './src/main.js']
+    'app': ['./build/dev-client', './src/main.js']
   },
   module: {
     rules: utils.styleLoaders({ sourceMap: true })

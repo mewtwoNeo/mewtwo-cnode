@@ -4,7 +4,7 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import * as types from '../../store/types'
+  import * as types from '@/vuex/types'
 
   export default {
     data () {

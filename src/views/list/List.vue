@@ -38,10 +38,10 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import * as types from '../../store/types'
-  import filters from './../../filters/filters'
+  import * as types from '@/vuex/types'
+  import filters from '@/plugins/filters'
   import timeago from 'timeago.js'
-  import appBar from '../../components/appBar/appBar.vue'
+  import appBar from '@/components/appBar/appBar.vue'
 
   export default {
     data () {
