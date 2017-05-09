@@ -2,12 +2,41 @@
  * Created by dengchongjing on 2017/3/2.
  */
 import * as types from '../types'
-import {getTopics, getTopicId} from '../api'
+import {getTopics, getTopicId} from '@/api'
 
 const state = {
-  list: [],
-  article: {},
-  aaa: '111'
+  now: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  all: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  ask: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  share: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  job: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  good: {
+    list: [],
+    pageNo: 1,
+    num: 0
+  },
+  active: 'all',
+  article: {}
 }
 
 const actions = {
@@ -25,7 +54,6 @@ const mutations = {
     state.list.push.apply(state.list, list)
   },
   [types.GET_TOPIC_ID] (state, article) {
-    console.log(article)
     state.article = article
   }
 }

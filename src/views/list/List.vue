@@ -64,8 +64,8 @@
       timeago: timeago().format
     },
     mounted () {
-      if (this.list.length === 0) {
-        this.getTopics([this.page, 'all', this.limit])
+      if (this.now.list.length === 0) {
+        this.getTopics([this.now.pageNo, this.active])
       }
       this.scroller = this.$el
     },
@@ -74,7 +74,8 @@
     },
     computed: {
       ...mapState({
-        list: state => state.cnode.list
+        now: state => state.list.now,
+        active: state => state.list.active
       })
     },
     methods: {

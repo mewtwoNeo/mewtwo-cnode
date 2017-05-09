@@ -18,7 +18,7 @@
     computed: {
       ...mapState({
         article: state => {
-          return state.cnode.article.content
+          return state.list.article.content
         }
       })
     },
