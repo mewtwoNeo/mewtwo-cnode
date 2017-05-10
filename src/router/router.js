@@ -17,6 +17,11 @@ const routes = [
       {
         path: '',
         component: list,
+        name: 'home'
+      },
+      {
+        path: '/list/:tab',
+        component: list,
         name: 'list'
       },
       {

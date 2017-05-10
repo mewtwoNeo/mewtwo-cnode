@@ -7,53 +7,65 @@ import {getTopics, getTopicId} from '@/api'
 const state = {
   now: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   all: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   ask: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   share: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   job: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   good: {
     list: [],
-    pageNo: 1,
-    num: 0
+    pageNo: 0
   },
   active: 'all',
   article: {}
 }
 
 const actions = {
-  [types.GET_TOPICS] (context, payload) {
-    getTopics(...payload).then(data => { context.commit(types.GET_TOPICS, data.data) })
+  getTopics ({commit}, payload) {
+    commit(types.UPDATE_TOPICS_PAGENO)
+    getTopics(...payload).then(data => { commit(types.GET_TOPICS_DATA, data.data) })
   },
-  [types.GET_TOPIC_ID] (context, id) {
-    getTopicId(id).then(data => { context.commit(types.GET_TOPIC_ID, data.data) })
+  changeTopicsType ({commit}, topicsType = 'all') {
+    commit(types.UPDATE_TOPICS_TYPE, topicsType)
+    commit(types.UPDATE_TOPICS)
+  },
+  fetchTopic (context, id) {
+    getTopicId(id).then(data => { context.commit(types.GET_TOPIC_DATA, data.data) })
   }
 }
 
 const mutations = {
-  [types.GET_TOPICS] (state, list) {
-    // 合并数组
-    state.list.push.apply(state.list, list)
+  // 切换当前主题列表类型
+  [types.UPDATE_TOPICS_TYPE] (state, topicsType) {
+    state.active = topicsType
   },
-  [types.GET_TOPIC_ID] (state, article) {
+  // 更新当前主题列表的页数
+  [types.UPDATE_TOPICS_PAGENO] (state) {
+    state[state.active].pageNo += 1
+  },
+  // 获取列表数据
+  [types.GET_TOPICS_DATA] (state, list) {
+    // 合并数组
+    state[state.active].list.push.apply(state[state.active].list, list)
+  },
+  // 切换当前主题列表数据
+  [types.UPDATE_TOPICS] (state) {
+    state.now = state[state.active]
+  },
+  [types.GET_TOPIC_DATA] (state, article) {
     state.article = article
   }
 }

@@ -9,5 +9,7 @@ export default {
   // 新建主题
   post_topics: `${HOST}/topics`,
   // 编辑主题
-  post_topics_update: `${HOST}/topics/update`
+  post_topics_update: `${HOST}/topics/update`,
+  // 验证 accessToken 的正确性
+  post_accesstoken_check: `${HOST}/accesstoken`
 }

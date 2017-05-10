@@ -2,7 +2,7 @@
     <div class="topics-infinite-container">
       <appBar></appBar>
       <mu-list>
-        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in list" :key='topic.id' >
+        <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in now.list" :key='topic.id' >
           <mu-row gutter class="topics-header">
             <mu-col width="20">
               <mu-badge :content="topic.tab | getTabInfo(topic.good,topic.top)"  v-if='topic.top||topic.good'  secondary/>
@@ -38,7 +38,6 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import * as types from '@/vuex/types'
   import filters from '@/plugins/filters'
   import timeago from 'timeago.js'
   import appBar from '@/components/appBar/appBar.vue'
@@ -46,12 +45,8 @@
   export default {
     data () {
       return {
-        // 页数
-        page: 1,
-        // 每页请求条数
-        limit: 10,
-        // 总数条数
-        num: 10,
+        // 从url参数获取列表类型，默认为all
+        tab: this.$route.params.tab || 'all',
         // 控制加载更多显示
         loading: false,
         scroller: null
@@ -64,6 +59,8 @@
       timeago: timeago().format
     },
     mounted () {
+      // 设置目前列表的类型
+      this.changeTopicsType(this.tab)
       if (this.now.list.length === 0) {
         this.getTopics([this.now.pageNo, this.active])
       }
@@ -79,16 +76,16 @@
       })
     },
     methods: {
-      ...mapActions({
-        getTopics: [types.GET_TOPICS]
-      }),
+      ...mapActions([
+        'getTopics',
+        'changeTopicsType'
+      ]),
       loadMore () {
         // 显示加载更多
         this.loading = true
         setTimeout(() => {
           // 加载更多
-          this.getTopics([this.page += 1, 'all', this.limit]).then(() => {
-            this.num += this.limit
+          this.getTopics([this.now.pageNo, this.active]).then(() => {
             // 隐藏加载更多
             this.loading = false
           })
