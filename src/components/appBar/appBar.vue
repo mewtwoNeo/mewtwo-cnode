@@ -19,12 +19,12 @@
       </mu-list>
       <mu-divider />
       <mu-list @itemClick="docked ? '' : toggle()">
-        <mu-list-item title="全部">
+        <mu-list-item title="全部" to="{path:'list',params:{tab: all}}" >
           <mu-icon slot="left" value="list"/>
         </mu-list-item>
-        <mu-list-item title="精华">
-          <mu-icon slot="left" value="thumb_up"/>
-        </mu-list-item>
+          <mu-list-item title="精华" to="list/good">
+            <mu-icon slot="left" value="thumb_up"/>
+          </mu-list-item>
         <mu-list-item title="分享">
           <mu-icon slot="left" value="share"/>
         </mu-list-item>

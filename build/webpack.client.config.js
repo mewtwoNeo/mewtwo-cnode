@@ -141,13 +141,7 @@ var prodwebackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    }),
-    new CopyWebpackPlugin([
-      {
-        from: './config/fis-config.js',
-        to: './'
-      }
-    ])
+    })
   ]
 })
 

@@ -1,10 +1,9 @@
 <template>
-  <div v-html="article" class="markdown-body article"></div>
+  <div v-html="content" class="markdown-body article"></div>
 </template>
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import * as types from '@/vuex/types'
 
   export default {
     data () {
@@ -13,19 +12,17 @@
       }
     },
     mounted () {
-      this.getTopicId(this.topicId)
+      this.getTopic(this.topicId)
     },
     computed: {
       ...mapState({
-        article: state => {
-          return state.list.article.content
-        }
+        content: state => state.article.article.content
       })
     },
     methods: {
-      ...mapActions({
-        getTopicId: [types.GET_TOPIC_ID]
-      })
+      ...mapActions([
+        'getTopic'
+      ])
     }
   }
 </script>
