@@ -4,30 +4,33 @@ import VueRouter from 'vue-router'
 // 使用vue-router
 Vue.use(VueRouter)
 
-import pageTransition from '../components/pageTransition/pageTransition.vue'
-import list from '../views/list/list.vue'
-import article from '../views/article/article.vue'
+import pageTransition from '../components/pageTransition/pageTransition'
+import list from '../components/list/list'
+import home from '../views/home/home'
+import article from '../views/article/article'
 
 const routes = [
   {
-    path: '',
+    path: '/',
     component: pageTransition,
     name: 'pageTransition',
     children: [
       {
-        path: '/list/:tab',
-        component: list,
-        name: 'list'
+        path: 'home',
+        component: home,
+        name: 'home',
+        children: [
+          {
+            path: ':tab',
+            component: list,
+            name: 'list'
+          }
+        ]
       },
       {
-        path: '/article/:topicId',
+        path: 'article/:topicId',
         component: article,
         name: 'article'
-      },
-      {
-        path: '',
-        component: list,
-        name: 'list'
       }
     ]
   }

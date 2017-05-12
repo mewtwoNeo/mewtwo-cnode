@@ -5,13 +5,11 @@
 </template>
 
 <script>
-  import appBar from './components/appBar/appBar.vue'
   import bottomNavigation from './components/bottomNavigation/bottomNavigation.vue'
 
   export default {
     name: 'app',
     components: {
-      appBar,
       bottomNavigation
     }
   }

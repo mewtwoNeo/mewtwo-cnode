@@ -1,6 +1,5 @@
 <template>
     <div class="topics-infinite-container">
-      <appBar></appBar>
       <mu-list>
         <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in now.list" :key='topic.id' >
           <mu-row gutter class="topics-header">
@@ -40,13 +39,11 @@
   import {mapState, mapActions} from 'vuex'
   import filters from '@/plugins/filters'
   import timeago from 'timeago.js'
-  import appBar from '@/components/appBar/appBar.vue'
 
   export default {
     data () {
       return {
-        // 从url参数获取列表类型，默认为all
-        tab: this.$route.params.tab || 'all',
+        tab: this.$route.params.tab || 'all', // 从url参数获取列表类型，默认为all
         // 控制加载更多显示
         loading: false,
         scroller: null
@@ -59,15 +56,13 @@
       timeago: timeago().format
     },
     mounted () {
+      alert(this.tab)
       // 设置目前列表的类型
       this.changeTopicsType(this.tab)
       if (this.now.list.length === 0) {
         this.getTopics([this.now.pageNo, this.active])
       }
       this.scroller = this.$el
-    },
-    components: {
-      appBar
     },
     computed: {
       ...mapState({
@@ -98,6 +93,10 @@
 <style lang="css">
   .topics-infinite-container {
     line-height: 24px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: auto;
   }
   .topics-header {
     padding: 5px 0;
