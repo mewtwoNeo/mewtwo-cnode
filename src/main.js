@@ -10,7 +10,14 @@ import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-carbon.css'
 import './assets/style/css/github-markdown.css'
 
+import * as filters from '@/plugins/filters'
+
 Vue.config.productionTip = false
+
+// 全局注册过滤器
+Object.keys(filters).forEach((val) => {
+  Vue.filter(val, filters[val])
+})
 
 // 同步路由
 sync(store, router)

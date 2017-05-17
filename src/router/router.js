@@ -11,6 +11,10 @@ import article from '../views/article/article'
 
 const routes = [
   {
+    path: '',
+    redirect: 'home/all'
+  },
+  {
     path: '/',
     component: pageTransition,
     name: 'pageTransition',
@@ -21,7 +25,7 @@ const routes = [
         name: 'home',
         children: [
           {
-            path: ':tab',
+            path: ':listId',
             component: list,
             name: 'list'
           }

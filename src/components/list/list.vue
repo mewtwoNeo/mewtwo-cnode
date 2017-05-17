@@ -16,7 +16,7 @@
                 {{topic.author.loginname}}
               </mu-col>
               <mu-col>
-                {{topic.create_at | timeago('zh_CN')}}
+                {{topic.create_at | timeagoFormat }}
               </mu-col>
             </mu-col>
             <mu-col width="40" class="textRight topics-tips-right">
@@ -24,7 +24,7 @@
                 <mu-badge :content="topic.reply_count | toString"   primary/>/<mu-badge :content="topic.visit_count | toString"   />
               </mu-col>
               <mu-col >
-                <span>{{ topic.last_reply_at | timeago('zh_CN') }}</span>
+                <span>{{ topic.last_reply_at | timeagoFormat }}</span>
               </mu-col>
             </mu-col>
           </mu-row>
@@ -37,32 +37,32 @@
 
 <script>
   import {mapState, mapActions} from 'vuex'
-  import filters from '@/plugins/filters'
-  import timeago from 'timeago.js'
 
   export default {
     data () {
       return {
-        tab: this.$route.params.tab || 'all', // 从url参数获取列表类型，默认为all
         // 控制加载更多显示
         loading: false,
         scroller: null
       }
     },
-    filters: {
-      MMDD: filters.MMDD,
-      getTabInfo: filters.getTabInfo,
-      toString: String,
-      timeago: timeago().format
-    },
     mounted () {
-      alert(this.tab)
       // 设置目前列表的类型
-      this.changeTopicsType(this.tab)
+      this.changeTopicsType(this.$route.params.listId)
       if (this.now.list.length === 0) {
         this.getTopics([this.now.pageNo, this.active])
       }
       this.scroller = this.$el
+    },
+    watch: {
+      '$route' () {
+        // 设置目前列表的类型
+        this.changeTopicsType(this.$route.params.listId)
+        if (this.now.list.length === 0) {
+          this.getTopics([this.now.pageNo, this.active])
+        }
+        this.scroller = this.$el
+      }
     },
     computed: {
       ...mapState({

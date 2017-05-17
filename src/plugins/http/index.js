@@ -44,6 +44,7 @@ export function fetch (url, options) {
       // 判断是否有自定义头部，以对参数进行序列化。不定义头部，默认对参数序列化为查询字符串。
       data: (opt.headers ? opt.data : stringify(opt.data)) || {},
       responseType: opt.dataType || 'json',
+      // 设置默认请求头
       headers: opt.headers || {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     })
       .then(response => {

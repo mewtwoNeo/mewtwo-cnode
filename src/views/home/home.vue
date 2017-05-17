@@ -4,8 +4,9 @@
     <mu-drawer :open="open" :docked="docked" @close="menuList">
       <menuList @clickMenuList="menuList"/>
     </mu-drawer>
-    <router-view></router-view>
-    <!--<list :tab="tab"/>-->
+    <transition name="transitionName">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -16,7 +17,7 @@
   export default {
     data () {
       return {
-        tab: this.$route.params.tab || 'all', // 从url参数获取列表类型，默认为all
+        transitionName: 'fade-in',
         open: false,
         docked: true,
         title: '首页'

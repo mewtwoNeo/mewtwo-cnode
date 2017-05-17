@@ -11,24 +11,25 @@
     <mu-divider />
     <mu-list>
 
-      <mu-list-item title="全部" href="#/home/all">
+      <mu-list-item title="全部" :to="{path: '/home/all'}" >
         <mu-icon slot="left" value="list"/>
       </mu-list-item>
 
 
-        <mu-list-item title="精华" href="#/home/good">
-          <mu-icon slot="left" value="thumb_up"/>
-        </mu-list-item>
+      <mu-list-item title="精华" :to="{path: '/home/good'}" >
+        <mu-icon slot="left" value="thumb_up"/>
+      </mu-list-item>
 
-      <mu-list-item title="分享" href="#/article/59142ef63504ce1c2ac45adb">
+      <mu-list-item title="分享" :to="{path: '/home/share'}">
         <mu-icon slot="left" value="share"/>
       </mu-list-item>
 
-      <mu-list-item title="问答">
+
+      <mu-list-item title="问答" :to="{path: '/home/ask'}">
         <mu-icon slot="left" value="help_outline"/>
       </mu-list-item>
 
-      <mu-list-item title="招聘">
+      <mu-list-item title="招聘" :to="{path: '/home/job'}">
         <mu-icon slot="left" value="supervisor_account"/>
       </mu-list-item>
 
