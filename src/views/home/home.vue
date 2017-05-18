@@ -4,15 +4,14 @@
     <mu-drawer :open="open" :docked="docked" @close="menuList">
       <menuList @clickMenuList="menuList"/>
     </mu-drawer>
-    <transition name="transitionName">
-      <router-view></router-view>
-    </transition>
+    <transitionList />
   </div>
 </template>
 
 <script>
   import appBar from '@/components/appBar/appBar'
   import menuList from '@/components/menuList/menuList'
+  import transitionList from '@/components/transition/transitionList'
 
   export default {
     data () {
@@ -25,7 +24,8 @@
     },
     components: {
       appBar,
-      menuList
+      menuList,
+      transitionList
     },
     methods: {
       menuList () { // 操作菜单列表显示隐藏
