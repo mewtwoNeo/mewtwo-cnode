@@ -1,22 +1,25 @@
 <template>
-  <div class="topics-infinite-container">
-    <appBar :title="title" @clickMenu="menuList"/>
+  <div>
     <mu-drawer :open="open" :docked="docked" @close="menuList">
       <menuList @clickMenuList="menuList"/>
     </mu-drawer>
-    <transitionList />
+    <div class="main-content">
+      <appBar :title="title" @clickMenu="menuList"/>
+      <list/>
+    </div>
   </div>
 </template>
 
 <script>
   import appBar from '@/components/appBar/appBar'
   import menuList from '@/components/menuList/menuList'
-  import transitionList from '@/components/transition/transitionList'
+  import list from '@/components/list/list'
 
   export default {
+    name: 'home',
     data () {
       return {
-        transitionName: 'fade-in',
+        show: 'true',
         open: false,
         docked: true,
         title: '首页'
@@ -25,12 +28,12 @@
     components: {
       appBar,
       menuList,
-      transitionList
+      list
     },
     methods: {
       menuList () { // 操作菜单列表显示隐藏
-        this.open = !this.open
         this.docked = !this.docked
+        this.open = !this.open
       }
     }
   }

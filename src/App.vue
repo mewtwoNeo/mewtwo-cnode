@@ -8,7 +8,7 @@
   import bottomNavigation from './components/bottomNavigation/bottomNavigation.vue'
 
   export default {
-    name: 'app',
+    name: 'App',
     components: {
       bottomNavigation
     }

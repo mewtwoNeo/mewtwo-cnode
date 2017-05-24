@@ -1,6 +1,7 @@
 <template>
-    <div class="topics-infinite-container">
-      <mu-list>
+  <div class="topics-infinite-container" >
+    <transition enter-active-class="animated pulse">
+      <mu-list :key="active">
         <router-link :to="{name:'article',params:{topicId: topic.id}}" v-for="topic in now.list" :key='topic.id' >
           <mu-row gutter class="topics-header">
             <mu-col width="20">
@@ -31,14 +32,16 @@
           <mu-divider/>
         </router-link>
       </mu-list>
-      <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
-    </div>
+    </transition>
+    <mu-infinite-scroll :scroller="scroller" :loading="loading" @load="loadMore"/>
+  </div>
 </template>
 
 <script>
   import {mapState, mapActions} from 'vuex'
 
   export default {
+    name: 'list',
     data () {
       return {
         // 控制加载更多显示
@@ -113,4 +116,26 @@
     padding-right: 20px;
   }
 
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+  .pulse {
+    animation-name: pulse;
+  }
 </style>

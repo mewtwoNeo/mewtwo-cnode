@@ -5,14 +5,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import pageTransition from '../components/pageTransition/pageTransition'
-import list from '../components/list/list'
 import home from '../views/home/home'
 import article from '../views/article/article'
 
 const routes = [
   {
     path: '',
-    redirect: 'home/all'
+    redirect: 'all'
   },
   {
     path: '/',
@@ -20,16 +19,9 @@ const routes = [
     name: 'pageTransition',
     children: [
       {
-        path: 'home',
+        path: ':listId',
         component: home,
-        name: 'home',
-        children: [
-          {
-            path: ':listId',
-            component: list,
-            name: 'list'
-          }
-        ]
+        name: 'home'
       },
       {
         path: 'article/:topicId',
