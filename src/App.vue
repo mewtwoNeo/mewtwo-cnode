@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import bottomNavigation from './components/bottomNavigation/bottomNavigation.vue'
+  import {bottomNavigation} from '@/components/'
 
   export default {
     name: 'App',

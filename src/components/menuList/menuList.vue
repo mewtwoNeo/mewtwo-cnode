@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" @click.prevent="clickMenuList" >
+  <div class="menu" @click.prevent="clickMenuList">
     <mu-list>
       <mu-list-item title="mewtwo">
         <mu-avatar :size="30" icon="assignment" backgroundColor="blue" slot="leftAvatar" />
@@ -15,8 +15,7 @@
         <mu-icon slot="left" value="list"/>
       </mu-list-item>
 
-
-      <mu-list-item title="精华" :to="{path: 'good'}" >
+      <mu-list-item title="精华" :to="{path: 'good'}">
         <mu-icon slot="left" value="thumb_up"/>
       </mu-list-item>
 
@@ -60,6 +59,7 @@
       }
     }
   }
+
 </script>
 
 <style lang="css">

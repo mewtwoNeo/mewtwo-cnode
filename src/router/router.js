@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 // 使用vue-router
 Vue.use(VueRouter)
 
-import pageTransition from '../components/pageTransition/pageTransition'
-import home from '../views/home/home'
-import article from '../views/article/article'
+import {pageTransition} from '@/components/'
+import home from '@/views/home/home'
+import article from '@/views/article/article'
 
 const routes = [
   {

@@ -11,9 +11,7 @@
 </template>
 
 <script>
-  import appBar from '@/components/appBar/appBar'
-  import menuList from '@/components/menuList/menuList'
-  import list from '@/components/list/list'
+  import { appBar, menuList, list } from '@/components/'
 
   export default {
     name: 'home',
@@ -32,8 +30,8 @@
     },
     methods: {
       menuList () { // 操作菜单列表显示隐藏
-        this.docked = !this.docked
         this.open = !this.open
+        this.docked = !this.docked
       }
     }
   }
